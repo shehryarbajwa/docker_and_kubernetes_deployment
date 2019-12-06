@@ -1,0 +1,22 @@
+### Create a dockerfile by the name Dockerfile
+### Dockerfile has the format
+### FROM contains the image
+
+
+### FROM python:stretch
+
+COPY . /app
+WORKDIR /app
+
+RUN pip3 install --upgrade pip
+RUN pip3 install -r requirements.txt
+
+ENTRYPOINT ["gunicorn", "-b", ":8080", "main:APP"]
+
+### We create a working directory where we paste the data
+### ENTRYPOINT refers to the Gunicorn server. On port 8080 using main.py file
+### pip installs all the requirements of the project
+### Then we run docker build <name>  .
+### And then docker run -p 8080:80 for port 80 on 8080
+### And then running just localhost to get the results
+
